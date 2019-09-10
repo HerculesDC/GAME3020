@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour
 {
+    //WILL REQUIRE REDEFINITION
     //Input-related variables
     [SerializeField] private string m_sHorAxisName;
     [SerializeField] private string m_sVertAxisName;
