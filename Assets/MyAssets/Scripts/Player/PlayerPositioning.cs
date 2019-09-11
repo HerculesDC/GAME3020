@@ -11,6 +11,8 @@ public class PlayerPositioning : MonoBehaviour
     [SerializeField] private string m_sRightName;
     [SerializeField] private GameObject m_gRight;
 
+    [SerializeField] private float m_fDistance; //***for tractor distance viewing purposes***
+
     private Vector3 m_vFacing = Vector3.zero; //***FOR READING PURPOSES ONLY***
     public Vector3 Facing { get { return m_vFacing; } }
 
@@ -36,7 +38,8 @@ public class PlayerPositioning : MonoBehaviour
             SetPosition();
             SetFacing();
         }
-        
+
+        m_fDistance = TractorDistance();
     }
 
     void SetPosition() {
@@ -61,9 +64,9 @@ public class PlayerPositioning : MonoBehaviour
     }
 
     public float TractorDistance() {
+
         Vector3 dist = (m_gRight.transform.position - m_gLeft.transform.position);
         return dist.sqrMagnitude;
-
     }
     /*
     IEnumerator DelayedPrint() {

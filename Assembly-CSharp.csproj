@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MyAssets\Scripts\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Forestry\TreeBehaviour.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Player\LineBehaviour.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Player\Movement.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Player\PlayerPositioning.cs" />

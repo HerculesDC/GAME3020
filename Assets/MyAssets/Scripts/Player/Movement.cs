@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
         m_bIsGrounded = Physics.Raycast(ray, out hit, m_fRayLength);
 
         if (m_rb && m_bIsGrounded) Move();
+        else if (m_rb && !m_bIsGrounded) Reset();
     }
 
     void Move() {
@@ -62,5 +63,9 @@ public class Movement : MonoBehaviour
 
         if (m_rb.angularVelocity.sqrMagnitude < m_fMaxAngVel)
             m_rb.AddTorque(Vector3.up * m_fTorque * Input.GetAxis(m_sHorAxisName));
+    }
+
+    void Reset() {
+        //this.gameObject.transform.position 
     }
 }
