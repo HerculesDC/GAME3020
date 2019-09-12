@@ -1,0 +1,2 @@
+C:\Users\hercu\Documents\SchoolStuff\SemVII\GP5\BigChain\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\hercu\Documents\SchoolStuff\SemVII\GP5\BigChain\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
