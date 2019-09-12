@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class CameraManager : MonoBehaviour
 {
     private static CameraManager m_instance = null;
@@ -21,7 +22,17 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (GameManager.Instance.CurrentState != GameStates.LVL1 ||
+            GameManager.Instance.CurrentState != GameStates.LVL2 ||
+            GameManager.Instance.CurrentState != GameStates.LVL3)
+        {
+            m_cam.orthographic = true;
+            m_cam.clearFlags = CameraClearFlags.Color;
+        }
+        else {
+            m_cam.orthographic = false;
+            m_cam.clearFlags = CameraClearFlags.Skybox;
+        } 
     }
 
     // Update is called once per frame

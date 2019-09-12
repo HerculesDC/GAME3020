@@ -35,7 +35,8 @@ public class CameraFollow : MonoBehaviour
         if (!m_gPlayer)
         {
             m_gPlayer = GameObject.Find(m_sPlayerName);
-            m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
+            if (m_gPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
+            else { }
         }
 
         DontDestroyOnLoad(this.gameObject);
@@ -44,7 +45,11 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
+        if (!m_gPlayer)
+        {
+            m_gPlayer = GameObject.Find(m_sPlayerName);
+            if (m_gPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
+        }
 
         m_rb.centerOfMass = Vector3.zero;
     }
@@ -52,7 +57,13 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (m_gPlayer) {
+        //Code for finding player. Will have to be updated, based on game state
+        if (!m_gPlayer)
+        {
+            m_gPlayer = GameObject.Find(m_sPlayerName);
+            if (m_gPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
+        }
+        else {
 
             HandlePlayer();
         }
