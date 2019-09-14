@@ -120,73 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &967075655
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 967075658}
-  - component: {fileID: 967075657}
-  - component: {fileID: 967075656}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &967075656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967075655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: HorLeft
-  m_VerticalAxis: VertLeft
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &967075657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967075655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &967075658
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967075655}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3046542433047097722
+--- !u!1001 &91319105
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -197,6 +131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046542434582466284, guid: df708fa263b3c6a40b12a0ec60bf79af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3046542434582466273, guid: df708fa263b3c6a40b12a0ec60bf79af,
         type: 3}
@@ -236,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 3046542434582466273, guid: df708fa263b3c6a40b12a0ec60bf79af,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3046542434582466273, guid: df708fa263b3c6a40b12a0ec60bf79af,
         type: 3}
@@ -305,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df708fa263b3c6a40b12a0ec60bf79af, type: 3}
---- !u!1001 &3760512877815769182
+--- !u!1001 &249073838
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -316,6 +255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game_Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760512878023187099, guid: 8ceadeccf6c7df44099c07e9b4ceb50e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760512878023187096, guid: 8ceadeccf6c7df44099c07e9b4ceb50e,
         type: 3}
@@ -374,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ceadeccf6c7df44099c07e9b4ceb50e, type: 3}
---- !u!1001 &8245350409213923924
+--- !u!1001 &1304710874
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -385,6 +329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245350407969143067, guid: c5d32f01e77767640bcefb630db26468,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8245350407969143040, guid: c5d32f01e77767640bcefb630db26468,
         type: 3}
@@ -424,7 +373,7 @@ PrefabInstance:
     - target: {fileID: 8245350407969143040, guid: c5d32f01e77767640bcefb630db26468,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8245350407969143040, guid: c5d32f01e77767640bcefb630db26468,
         type: 3}

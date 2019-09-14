@@ -74,7 +74,7 @@ public class CameraFollow : MonoBehaviour
         //MUST ACCOUNT FOR FACING!!!
         //CHECK AGAIN
         m_fDistance = Mathf.Clamp((m_ppPlayer.TractorDistance() * m_fApproach), m_fMinDistance, m_fMaxDistance);
-        this.gameObject.transform.position = new Vector3(-m_ppPlayer.Facing.x, 0.5f, -m_ppPlayer.Facing.z) * m_fDistance;
+        this.gameObject.transform.position = new Vector3(-m_ppPlayer.Facing.x, 0.5f, -m_ppPlayer.Facing.z).normalized * m_fDistance;
         this.gameObject.transform.position += m_gPlayer.transform.position;
         this.gameObject.transform.LookAt(m_gPlayer.transform.position);
     }

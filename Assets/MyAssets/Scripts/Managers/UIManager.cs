@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get { return m_instance; } }
 
     private Canvas m_canvas = null;
+    //Question: is it better to make an array from the get-go,
+    //or try and find things dynamically?
+    [SerializeField] private Text[] m_aTexts;
 
     void Awake() {
 
@@ -23,12 +26,33 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DetectScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        DetectScene();   
+    }
+
+    void DetectScene() {
+
+        if (GameManager.Instance.CurrentState == GameStates.LVL1 ||
+            GameManager.Instance.CurrentState == GameStates.LVL2 ||
+            GameManager.Instance.CurrentState == GameStates.LVL3)
+        {
+            foreach (Text t in m_aTexts) {
+                if (t != null && t.isActiveAndEnabled) {
+                    t.enabled = false;
+                }
+            }
+        }
+        else {
+            foreach (Text t in m_aTexts) {
+                if (t != null && !t.isActiveAndEnabled) {
+                    t.enabled = true;
+                }
+            }
+        }
     }
 }
