@@ -42,32 +42,32 @@ InputManager:
     descriptiveName: Gamepad Right Horizontal Axis
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left ctrl
+    positiveButton: 
     altNegativeButton: 
-    altPositiveButton: mouse 0
-    gravity: 1000
+    altPositiveButton: 
+    gravity: 3
     dead: 0.001
-    sensitivity: 1000
+    sensitivity: 3
     snap: 0
     invert: 0
-    type: 0
-    axis: 0
+    type: 2
+    axis: 3
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire2
-    descriptiveName: 
+    m_Name: VertRight
+    descriptiveName: Gamepad Right Vertical Axis
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left alt
+    positiveButton: 
     altNegativeButton: 
-    altPositiveButton: mouse 1
-    gravity: 1000
+    altPositiveButton: 
+    gravity: 3
     dead: 0.001
-    sensitivity: 1000
+    sensitivity: 3
     snap: 0
-    invert: 0
-    type: 0
-    axis: 0
+    invert: 1
+    type: 2
+    axis: 4
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire3
@@ -162,7 +162,7 @@ InputManager:
     sensitivity: 3
     snap: 1
     invert: 0
-    type: 0
+    type: 2
     axis: 0
     joyNum: 0
   - serializedVersion: 3
@@ -182,36 +182,36 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire1
-    descriptiveName: 
+    m_Name: HorLeft
+    descriptiveName: Gamepad Left Horizontal Axis
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 0
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1000
+    gravity: 3
     dead: 0.001
-    sensitivity: 1000
+    sensitivity: 3
     snap: 0
     invert: 0
-    type: 0
+    type: 2
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire2
-    descriptiveName: 
+    m_Name: VertLeft
+    descriptiveName: Gamepad Left Vertical Axis
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 1
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1000
+    gravity: 3
     dead: 0.001
-    sensitivity: 1000
+    sensitivity: 3
     snap: 0
-    invert: 0
-    type: 0
-    axis: 0
+    invert: 1
+    type: 2
+    axis: 1
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire3

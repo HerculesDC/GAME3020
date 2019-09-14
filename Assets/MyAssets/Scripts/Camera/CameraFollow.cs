@@ -62,18 +62,19 @@ public class CameraFollow : MonoBehaviour
         {
             m_gPlayer = GameObject.Find(m_sPlayerName);
             if (m_gPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
-        }
+        }        
         else {
-
-            HandlePlayer();
+            if (!m_ppPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
+            else HandlePlayer();
         }
+        
     }
 
     void HandlePlayer() {
         //MUST ACCOUNT FOR FACING!!!
         //CHECK AGAIN
         m_fDistance = Mathf.Clamp((m_ppPlayer.TractorDistance() * m_fApproach), m_fMinDistance, m_fMaxDistance);
-        this.gameObject.transform.position = new Vector3(m_ppPlayer.Facing.x, 0.1f, -m_ppPlayer.Facing.z) * m_fDistance;
+        this.gameObject.transform.position = new Vector3(-m_ppPlayer.Facing.x, 0.5f, -m_ppPlayer.Facing.z) * m_fDistance;
         this.gameObject.transform.position += m_gPlayer.transform.position;
         this.gameObject.transform.LookAt(m_gPlayer.transform.position);
     }

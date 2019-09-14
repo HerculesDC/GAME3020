@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     //WILL REQUIRE REDEFINITION
     //Input-related variables
+    //OBS.: As per the new project settings, the Y axis input from gamepads is INVERTED!
     [SerializeField] private string m_sHorAxisName;
     [SerializeField] private string m_sVertAxisName;
 

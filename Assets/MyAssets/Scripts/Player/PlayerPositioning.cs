@@ -14,7 +14,7 @@ public class PlayerPositioning : MonoBehaviour
     [SerializeField] private float m_fDistance; //***for tractor distance viewing purposes***
 
     private Vector3 m_vFacing = Vector3.zero; //***FOR READING PURPOSES ONLY***
-    public Vector3 Facing { get { return m_vFacing; } }
+    public Vector3 Facing { get { return m_vFacing.normalized; } }
 
     void Awake() {
         m_vFacing = Vector3.zero;
@@ -51,6 +51,7 @@ public class PlayerPositioning : MonoBehaviour
     void SetFacing() {
 
         //THIS LOOKS UGLY AND INEFFICIENT... (but it works, so I'll leave it for now)
+        /*
         float tempX = m_gRight.transform.position.x - m_gLeft.transform.position.x;
         float tempZ = m_gRight.transform.position.z - m_gLeft.transform.position.z;
 
@@ -60,7 +61,11 @@ public class PlayerPositioning : MonoBehaviour
         tempZ = Mathf.Sin(angle);
         m_vFacing = new Vector3(-tempZ, 0, tempX);
         m_vFacing.Normalize();
+
         this.gameObject.transform.LookAt(this.gameObject.transform.position + m_vFacing);
+        */
+        this.gameObject.transform.rotation = Quaternion.Slerp(m_gLeft.transform.rotation, m_gRight.transform.rotation, 0.5f);
+        m_vFacing = this.gameObject.transform.position + this.gameObject.transform.forward;
     }
 
     public float TractorDistance() {
