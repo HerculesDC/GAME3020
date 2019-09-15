@@ -42,16 +42,25 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.CurrentState == GameStates.LVL3)
         {
             foreach (Text t in m_aTexts) {
-                if (t != null && t.isActiveAndEnabled) {
+                if (t != null && t.tag == "MENU_UI" && t.isActiveAndEnabled) {
                     t.enabled = false;
+
                 }
+                if (t != null && t.tag == "LEVEL_UI" && !t.isActiveAndEnabled) {
+                    t.enabled = true;
+                }
+                //else t.enabled = false;
             }
         }
         else {
             foreach (Text t in m_aTexts) {
-                if (t != null && !t.isActiveAndEnabled) {
+                if (t != null && t.tag == "MENU_UI" && !t.isActiveAndEnabled) {
                     t.enabled = true;
                 }
+                if (t != null && t.tag == "LEVEL_UI" && t.isActiveAndEnabled){
+                    t.enabled = false;
+                }
+                //else t.enabled = false;
             }
         }
     }

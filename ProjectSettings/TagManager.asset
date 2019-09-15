@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Chain
+  - LEVEL_UI
+  - MENU_UI
   layers:
   - Default
   - TransparentFX
