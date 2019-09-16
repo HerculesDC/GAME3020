@@ -7,6 +7,8 @@ TagManager:
   - Chain
   - LEVEL_UI
   - MENU_UI
+  - Tree
+  - Tractor
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class UIManager : MonoBehaviour
     //Question: is it better to make an array from the get-go,
     //or try and find things dynamically?
     [SerializeField] private Text[] m_aTexts;
+
+    [SerializeField] private LevelManager m_level = null;
 
     void Awake() {
 
@@ -32,7 +35,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetectScene();   
+        DetectScene();
+        UpdateUI();
     }
 
     void DetectScene() {
@@ -49,7 +53,6 @@ public class UIManager : MonoBehaviour
                 if (t != null && t.tag == "LEVEL_UI" && !t.isActiveAndEnabled) {
                     t.enabled = true;
                 }
-                //else t.enabled = false;
             }
         }
         else {
@@ -60,8 +63,42 @@ public class UIManager : MonoBehaviour
                 if (t != null && t.tag == "LEVEL_UI" && t.isActiveAndEnabled){
                     t.enabled = false;
                 }
-                //else t.enabled = false;
             }
+        }
+    }
+
+    void UpdateUI() {
+
+        if (GameManager.Instance.CurrentState == GameStates.LVL1 ||
+            GameManager.Instance.CurrentState == GameStates.LVL2 ||
+            GameManager.Instance.CurrentState == GameStates.LVL3) {
+
+            if (m_level) {
+                foreach (Text t in m_aTexts) {
+
+                    if (t.name == "Timer") t.text = "Time: " + m_level.Timer;
+                    if (t.name == "Trees") t.text = "Trees: " + m_level.Trees + "/" +m_level.AllTrees;
+                }
+            }
+        }
+    }
+
+    public void OnLevelChange() {
+
+        //Looks for a gameObject containing a Level Manager
+        GameObject temp = GameObject.Find("LevelScripts");
+
+        if (temp) {
+            //There being such a Level Manager, 
+            //it compares with the level manager it currently holds,
+            //ignoring it if it's the same
+            LevelManager temp_level = temp.GetComponent<LevelManager>();
+            if (temp_level != m_level) {
+                m_level = temp_level;
+            }
+        }
+        else {
+            m_level = null;
         }
     }
 }

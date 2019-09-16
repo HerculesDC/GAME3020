@@ -59,5 +59,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(2);
             }
         }
+
+        UIManager.Instance.OnLevelChange();
     }
 }
