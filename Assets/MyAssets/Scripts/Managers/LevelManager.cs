@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        m_fTimer += Time.deltaTime;
+        if (GameManager.Instance.CurrentState != GameStates.PAUSE) m_fTimer += Time.deltaTime;
     }
 
     void OnReset() {

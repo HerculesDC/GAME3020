@@ -9,6 +9,7 @@ TagManager:
   - MENU_UI
   - Tree
   - Tractor
+  - PAUSE_UI
   layers:
   - Default
   - TransparentFX

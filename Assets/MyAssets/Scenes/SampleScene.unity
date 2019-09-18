@@ -2054,6 +2054,7 @@ MonoBehaviour:
   m_fResetTime: 1
   m_fLowering: 2.5
   m_bFallen: 0
+  m_sLevel: 
 --- !u!54 &1253822517
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2185,6 +2186,7 @@ MonoBehaviour:
   m_fResetTime: 0
   m_fLowering: 0
   m_bFallen: 0
+  m_sLevel: 
 --- !u!54 &1389416488
 Rigidbody:
   m_ObjectHideFlags: 0

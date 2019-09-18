@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
         UpdateUI();
     }
 
+    //WILL REQUIRE REFACTORING
     void DetectScene() {
 
         if (GameManager.Instance.CurrentState == GameStates.LVL1 ||
@@ -46,21 +47,33 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.CurrentState == GameStates.LVL3)
         {
             foreach (Text t in m_aTexts) {
-                if (t != null && t.tag == "MENU_UI" && t.isActiveAndEnabled) {
+                if (t != null && t.tag != "LEVEL_UI" && t.isActiveAndEnabled) {
                     t.enabled = false;
-
                 }
                 if (t != null && t.tag == "LEVEL_UI" && !t.isActiveAndEnabled) {
                     t.enabled = true;
                 }
             }
         }
-        else {
+        if (GameManager.Instance.CurrentState == GameStates.INTRO ||
+            GameManager.Instance.CurrentState == GameStates.START ||
+            GameManager.Instance.CurrentState == GameStates.LOSE  ||
+            GameManager.Instance.CurrentState == GameStates.WIN) {
             foreach (Text t in m_aTexts) {
                 if (t != null && t.tag == "MENU_UI" && !t.isActiveAndEnabled) {
                     t.enabled = true;
                 }
-                if (t != null && t.tag == "LEVEL_UI" && t.isActiveAndEnabled){
+                if (t != null && t.tag != "MENU_UI" && t.isActiveAndEnabled){
+                    t.enabled = false;
+                }
+            }
+        }
+        if (GameManager.Instance.CurrentState == GameStates.PAUSE) {
+            foreach (Text t in m_aTexts) {
+                if (t != null && t.tag == "PAUSE_UI" && !t.isActiveAndEnabled) {
+                    t.enabled = true;
+                }
+                if (t != null && t.tag != "PAUSE_UI" && t.isActiveAndEnabled) {
                     t.enabled = false;
                 }
             }
@@ -101,4 +114,19 @@ public class UIManager : MonoBehaviour
             m_level = null;
         }
     }
+    /*
+    public void OnPause() {
+        foreach (Text t in m_aTexts) {
+            if (t && t.tag != "PAUSE_UI" && t.isActiveAndEnabled) t.enabled = false;
+            if (t && t.tag == "PAUSE_UI" && !t.isActiveAndEnabled) t.enabled = true;
+        }        
+    }
+
+    public void OnResume() {
+        foreach (Text t in m_aTexts) {
+            
+            if (t && t.tag == "PAUSE_UI" && t.isActiveAndEnabled) t.enabled = false;
+        }
+    }
+    //*/
 }

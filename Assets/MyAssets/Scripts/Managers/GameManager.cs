@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         LevelLoader();
+        CheckPause();
     }
 
     void LevelLoader() { 
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
 
         //To do: Rethink using GetButton. Looks a tad more expensive than GetKey
         if (m_scene.buildIndex == 0) {
-            if (Input.GetMouseButtonDown(0) || Input.GetButton("Confirm")){
+            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Confirm")){
 
                 m_gCurState = GameStates.LVL1;
                 SceneManager.LoadScene(1);
@@ -59,7 +60,27 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(2);
             }
         }
-
         UIManager.Instance.OnLevelChange();
+    }
+
+    void CheckPause() {
+
+        //will require refining
+        if (m_gCurState == GameStates.LVL1 ||
+            m_gCurState == GameStates.LVL2 ||
+            m_gCurState == GameStates.LVL3) {
+
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("Pause")) {
+                m_gPrevState = m_gCurState;
+                m_gCurState = GameStates.PAUSE;
+            }
+        }
+        if (m_gCurState == GameStates.PAUSE &&
+                (m_gCurState == GameStates.LVL1 ||
+                 m_gCurState == GameStates.LVL2 ||
+                 m_gCurState == GameStates.LVL3)) {
+
+            m_gCurState = m_gPrevState;
+        }
     }
 }

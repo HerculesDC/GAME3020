@@ -39,7 +39,8 @@ public class CameraFollow : MonoBehaviour
             else { }
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        //Camera Manager does that already
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     // Start is called before the first frame update
@@ -71,11 +72,12 @@ public class CameraFollow : MonoBehaviour
     }
 
     void HandlePlayer() {
-        //MUST ACCOUNT FOR FACING!!!
+        //Rework this math
         //CHECK AGAIN
         m_fDistance = Mathf.Clamp((m_ppPlayer.TractorDistance() * m_fApproach), m_fMinDistance, m_fMaxDistance);
-        this.gameObject.transform.position = new Vector3(-m_ppPlayer.Facing.x, 0.5f, -m_ppPlayer.Facing.z).normalized * m_fDistance;
+        this.gameObject.transform.position = m_gPlayer.transform.forward * -m_fDistance;
         this.gameObject.transform.position += m_gPlayer.transform.position;
+        this.gameObject.transform.position += Vector3.up * 5;
         this.gameObject.transform.LookAt(m_gPlayer.transform.position);
     }
 }
