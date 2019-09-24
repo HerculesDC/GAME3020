@@ -56,17 +56,19 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MyAssets\Scripts\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Characters\Movement.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Characters\PlayerPositioning.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Characters\VehicleControl.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Forestry\AnimTreeBehaviour.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Forestry\TreeBehaviour.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Forestry\TreeCollision.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Helpers\Helpers.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Managers\AIManager.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Managers\CameraManager.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Managers\InputManager.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Managers\LevelManager.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Managers\UIManager.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\Player\LineBehaviour.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\Player\Movement.cs" />
-     <Compile Include="Assets\MyAssets\Scripts\Player\PlayerPositioning.cs" />
      <None Include="Assets\_ImportedAssets\tractor and planter\readme.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/hercu/Documents/SchoolStuff/SemVII/GP5/BigChain/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

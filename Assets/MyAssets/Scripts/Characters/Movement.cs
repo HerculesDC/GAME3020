@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private string m_sHorAxisName;
     [SerializeField] private string m_sVertAxisName;
 
+    [SerializeField] private Tractor m_tTractor;
+
     //Physics movement variables
     [SerializeField] private float m_fMaxVel;
     [SerializeField] private float m_fImpulse;

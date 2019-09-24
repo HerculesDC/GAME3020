@@ -12,6 +12,9 @@ public enum GameStates { START = 0,
                          LOSE = INTRO << 6,
                          STATE_COUNT = INTRO << 7 }
 
+//just to be on the safe side...
+public enum Tractor { LEFT = -1, AI = 0, RIGHT = 1 }
+
 public class Helpers : MonoBehaviour
 {
     // Start is called before the first frame update
