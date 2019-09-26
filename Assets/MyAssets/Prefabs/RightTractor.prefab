@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightTractor
       objectReference: {fileID: 0}
+    - target: {fileID: 8580625511815272794, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_Tractor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8580625511815272791, guid: 9dcb2300351738e43a03a1d1336cf3f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,10 +72,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8580625511815272794, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+    - target: {fileID: 8580625512126504592, guid: 9dcb2300351738e43a03a1d1336cf3f7,
         type: 3}
-      propertyPath: m_Tractor
-      value: 1
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b05ab007c53770546892dd1665a8bc6b, type: 2}
+    - target: {fileID: 2904706110350666131, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_VerticalAxisName
+      value: VertRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904706110350666131, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_HorizontalAxisName
+      value: HorRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dcb2300351738e43a03a1d1336cf3f7, type: 3}

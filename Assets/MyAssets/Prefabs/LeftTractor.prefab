@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8580625511815272790, guid: 9dcb2300351738e43a03a1d1336cf3f7,
         type: 3}
       propertyPath: m_Name
-      value: PhysicsVehicle
+      value: LeftTractor
       objectReference: {fileID: 0}
     - target: {fileID: 8580625511815272791, guid: 9dcb2300351738e43a03a1d1336cf3f7,
         type: 3}
@@ -66,6 +66,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580625512126504592, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8175b59fb5aac574abb3110b4f13df48, type: 2}
+    - target: {fileID: 2904706110350666131, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_VerticalAxisName
+      value: VertLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904706110350666131, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_HorizontalAxisName
+      value: HorLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dcb2300351738e43a03a1d1336cf3f7, type: 3}

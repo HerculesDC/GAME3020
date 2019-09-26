@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(Rigidbody))]
 public class VehicleControl : MonoBehaviour
 {
     [SerializeField] private Tractor m_Tractor;
-    [SerializeField] private AIManager m_AI = null;
+    [SerializeField] private InputManager m_input;    
 
     [SerializeField] private Vector3 m_vrbOffset;
     private Rigidbody m_rb;
@@ -25,6 +26,8 @@ public class VehicleControl : MonoBehaviour
     void Start()
     {
         m_rb.centerOfMass += m_vrbOffset;
+
+        if (m_input) m_input.SetTractor(m_Tractor);
     }
 
     // Update is called once per frame
@@ -36,24 +39,18 @@ public class VehicleControl : MonoBehaviour
 
     void Move() {
 
-        foreach (WheelCollider w in m_wAccelWheels) {
-            if (m_Tractor == Tractor.LEFT) {
-                w.motorTorque = m_fAcceleration * Time.fixedDeltaTime * InputManager.Instance.LeftAccel;
-            }
-            if (m_Tractor == Tractor.RIGHT) {
-                w.motorTorque = m_fAcceleration * Time.fixedDeltaTime * InputManager.Instance.RightAccel;
-            }
-        }
+        foreach (WheelCollider w in m_wAccelWheels)
+            w.motorTorque = m_fAcceleration * Time.fixedDeltaTime * m_input.Accel;
+        Brake();
     }
 
     void Turn() {
-        foreach (WheelCollider w in m_wTurnWheels) {
-            if (m_Tractor == Tractor.LEFT) {
-                w.steerAngle = m_fTurn * InputManager.Instance.LeftTurn;
-            }
-            if (m_Tractor == Tractor.RIGHT) {
-                w.steerAngle = m_fTurn * InputManager.Instance.RightTurn;
-            }
-        }
+        foreach (WheelCollider w in m_wTurnWheels)
+            w.steerAngle = m_fTurn * m_input.Turn;
+    }
+
+    void Brake() {
+        foreach (WheelCollider w in m_wAccelWheels)
+            w.brakeTorque = m_fAcceleration * Time.fixedDeltaTime * m_input.Brake;
     }
 }

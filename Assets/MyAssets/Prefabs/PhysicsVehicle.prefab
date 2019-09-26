@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 8580625511815272788}
   - component: {fileID: 8580625511815272789}
   - component: {fileID: 8580625511815272794}
+  - component: {fileID: 2904706110350666131}
   m_Layer: 0
   m_Name: PhysicsVehicle
   m_TagString: Untagged
@@ -168,7 +169,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8580625511815272790}
   serializedVersion: 2
-  m_Mass: 13000
+  m_Mass: 1300
   m_Drag: 0.05
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -202,9 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Tractor: -1
-  m_AI: {fileID: 0}
+  m_input: {fileID: 0}
   m_vrbOffset: {x: 0, y: -1.1, z: -0.5}
-  m_fAcceleration: 10000
+  m_fAcceleration: 100000
   m_fTurn: 45
   m_wTurnWheels:
   - {fileID: 8580625512220981483}
@@ -214,6 +215,23 @@ MonoBehaviour:
   - {fileID: 8580625512222666706}
   - {fileID: 8580625510494789177}
   - {fileID: 8580625510395428832}
+--- !u!114 &2904706110350666131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8580625511815272790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08b98f43eede374b84903c5078a0c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_VerticalAxisName: 
+  m_HorizontalAxisName: 
+  m_BrakeName: Brake
+  m_ConfirmName: Confirm
+  m_CancelName: Cancel
 --- !u!1 &8580625512124198436
 GameObject:
   m_ObjectHideFlags: 0
