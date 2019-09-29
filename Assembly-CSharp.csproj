@@ -55,7 +55,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MyAssets\Scripts\AI\AIPlay.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Camera\CameraFollow.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Camera\NewCameraFollow.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Camera\ProvCamFollow.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Characters\AnalogRotation.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Characters\PlayerPositioning.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Characters\VehicleControl.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Forestry\AnimTreeBehaviour.cs" />

@@ -7,7 +7,7 @@ using UnityEngine;
 public class VehicleControl : MonoBehaviour
 {
     [SerializeField] private Tractor m_Tractor;
-    [SerializeField] private InputManager m_input;    
+    private InputManager m_input;    
 
     [SerializeField] private Vector3 m_vrbOffset;
     private Rigidbody m_rb;
@@ -20,6 +20,7 @@ public class VehicleControl : MonoBehaviour
 
     void Awake() {
         m_rb = this.gameObject.GetComponent<Rigidbody>();
+        m_input = this.gameObject.GetComponent <InputManager>();
     }
 
     // Start is called before the first frame update
@@ -39,8 +40,10 @@ public class VehicleControl : MonoBehaviour
 
     void Move() {
 
-        foreach (WheelCollider w in m_wAccelWheels)
-            w.motorTorque = m_fAcceleration * Time.fixedDeltaTime * m_input.Accel;
+        if (!m_input.Brake) {
+            foreach (WheelCollider w in m_wAccelWheels)
+                w.motorTorque = m_fAcceleration * Time.fixedDeltaTime * m_input.Accel;
+        }
         Brake();
     }
 
@@ -51,6 +54,6 @@ public class VehicleControl : MonoBehaviour
 
     void Brake() {
         foreach (WheelCollider w in m_wAccelWheels)
-            w.brakeTorque = m_fAcceleration * Time.fixedDeltaTime * m_input.Brake;
+            w.brakeTorque = m_input.Brake ? m_fAcceleration * Time.fixedDeltaTime : 0.0f;
     }
 }

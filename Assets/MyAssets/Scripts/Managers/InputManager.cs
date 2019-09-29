@@ -13,10 +13,11 @@ public class InputManager : MonoBehaviour
     [SerializeField] private string m_HorizontalAxisName;
     private float m_Turn;
     public float Turn { get { return m_Turn; } }
-    [SerializeField] private string m_BrakeName;
-    private float m_Brake;
-    public float Brake { get { return m_Brake; } }
 
+
+    [SerializeField] private string m_BrakeName;
+    private bool m_Brake;
+    public bool Brake { get { return m_Brake; } }
     [SerializeField] private string m_ConfirmName;
     private bool m_bConfirm;
     public bool Confirm { get { return m_bConfirm; } }
@@ -32,10 +33,10 @@ public class InputManager : MonoBehaviour
         m_Accel = Input.GetAxis(m_VerticalAxisName);
         m_Turn = Input.GetAxis(m_HorizontalAxisName);
 
-        m_Brake = Input.GetAxis(m_BrakeName);
-        Debug.Log(m_BrakeName + ": " + m_Brake.ToString());
-        m_bConfirm = Input.GetMouseButtonDown(0) || Input.GetButtonDown(m_ConfirmName);
-        m_bCancel = Input.GetMouseButton(1) || Input.GetButtonDown(m_CancelName);
+        m_Brake = Input.GetButtonDown(m_BrakeName);
+        
+        m_bConfirm = m_ConfirmName != "" ? Input.GetButtonDown(m_ConfirmName): false;
+        m_bCancel = m_CancelName != "" ? Input.GetButtonDown(m_CancelName) : false;
     }
 
     public void SetTractor(Tractor tractor) {
