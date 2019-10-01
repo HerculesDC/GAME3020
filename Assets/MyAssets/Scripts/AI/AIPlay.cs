@@ -67,4 +67,25 @@ public class AIPlay : MonoBehaviour
     void Follow(Transform t) {
 
     }
+
+    public float Accelerate() {
+        //for now, AI will return max accel.
+        if (ChooseTarget()) return 1.0f;
+        return 0.0f;
+    }
+
+    public float Steer() { //The current approach is too naive and requires fine-tuning
+
+        Transform temp = ChooseTarget();
+        if (temp) {
+            return Mathf.Cos(Mathf.Atan2(temp.position.z, temp.position.x));
+        }
+        return 0.0f;
+    }
+
+    public bool Brake() {
+
+        if (!ChooseTarget()) return true;
+        return false;
+    }
 }

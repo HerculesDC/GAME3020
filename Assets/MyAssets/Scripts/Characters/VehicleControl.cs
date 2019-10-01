@@ -21,14 +21,13 @@ public class VehicleControl : MonoBehaviour
     void Awake() {
         m_rb = this.gameObject.GetComponent<Rigidbody>();
         m_input = this.gameObject.GetComponent <InputManager>();
+        if (m_input) m_input.SetTractor(m_Tractor);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         m_rb.centerOfMass += m_vrbOffset;
-
-        if (m_input) m_input.SetTractor(m_Tractor);
     }
 
     // Update is called once per frame
@@ -40,7 +39,8 @@ public class VehicleControl : MonoBehaviour
 
     void Move() {
 
-        if (!m_input.Brake) {
+        if (!m_input.Brake)
+        {
             foreach (WheelCollider w in m_wAccelWheels)
                 w.motorTorque = m_fAcceleration * Time.fixedDeltaTime * m_input.Accel;
         }
@@ -53,7 +53,8 @@ public class VehicleControl : MonoBehaviour
     }
 
     void Brake() {
-        foreach (WheelCollider w in m_wAccelWheels)
-            w.brakeTorque = m_input.Brake ? m_fAcceleration * Time.fixedDeltaTime : 0.0f;
+        foreach (WheelCollider w in m_wAccelWheels) {
+            w.brakeTorque = m_input.Brake ? 2 * m_fAcceleration : 0.0f;
+        }
     }
 }
