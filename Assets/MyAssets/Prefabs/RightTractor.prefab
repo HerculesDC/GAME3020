@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!59 &1446096353603216022
+HingeJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3617576929582002503}
+  m_ConnectedBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 1, z: -3.5}
+  m_Axis: {x: 0, y: 1, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 0, y: 1, z: -3.5}
+  m_UseSpring: 0
+  m_Spring:
+    spring: 0
+    damper: 0
+    targetPosition: 0
+  m_UseMotor: 0
+  m_Motor:
+    targetVelocity: 0
+    force: 0
+    freeSpin: 0
+  m_UseLimits: 0
+  m_Limits:
+    min: 0
+    max: 0
+    bounciness: 0
+    bounceMinVelocity: 0.2
+    contactDistance: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1001 &4981181832185079825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,6 +46,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RightTractor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580625511815272794, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_Tractor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8580625511815272791, guid: 9dcb2300351738e43a03a1d1336cf3f7,
         type: 3}
@@ -67,11 +107,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8580625511815272794, guid: 9dcb2300351738e43a03a1d1336cf3f7,
-        type: 3}
-      propertyPath: m_Tractor
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2904706110350666131, guid: 9dcb2300351738e43a03a1d1336cf3f7,
         type: 3}
       propertyPath: m_VerticalAxisName
@@ -87,11 +122,6 @@ PrefabInstance:
       propertyPath: m_BrakeName
       value: RightBrake
       objectReference: {fileID: 0}
-    - target: {fileID: 8580625512126504592, guid: 9dcb2300351738e43a03a1d1336cf3f7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b05ab007c53770546892dd1665a8bc6b, type: 2}
     - target: {fileID: 8528900058910572044, guid: 9dcb2300351738e43a03a1d1336cf3f7,
         type: 3}
       propertyPath: m_Color.rgba
@@ -102,5 +132,16 @@ PrefabInstance:
       propertyPath: m_Text
       value: R
       objectReference: {fileID: 0}
+    - target: {fileID: 8580625512126504592, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b05ab007c53770546892dd1665a8bc6b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dcb2300351738e43a03a1d1336cf3f7, type: 3}
+--- !u!1 &3617576929582002503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8580625511815272790, guid: 9dcb2300351738e43a03a1d1336cf3f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4981181832185079825}
+  m_PrefabAsset: {fileID: 0}

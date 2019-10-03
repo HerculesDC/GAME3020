@@ -106,7 +106,7 @@ InputManager:
     descriptiveName: Pause button
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 8
+    positiveButton: joystick button 7
     altNegativeButton: 
     altPositiveButton: return
     gravity: 1000
