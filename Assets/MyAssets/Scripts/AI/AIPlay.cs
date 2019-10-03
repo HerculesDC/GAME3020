@@ -78,7 +78,7 @@ public class AIPlay : MonoBehaviour
 
         Transform temp = ChooseTarget();
         if (temp) {
-            return Mathf.Cos(Mathf.Atan2(temp.position.z, temp.position.x));
+            return Mathf.Sin(Mathf.Atan2(temp.position.z, temp.position.x));
         }
         return 0.0f;
     }

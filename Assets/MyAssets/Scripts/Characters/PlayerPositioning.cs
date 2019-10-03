@@ -11,15 +11,26 @@ public class PlayerPositioning : MonoBehaviour
     [SerializeField] private string m_sRightName;
     [SerializeField] private GameObject m_gRight;
 
+    [SerializeField] private string m_sLinkName;
+    [SerializeField] private GameObject[] m_gLinks;
+
+    [SerializeField] private float m_fWarningDistance;
+    [SerializeField] private float m_fSnapDistance;
     [SerializeField] private float m_fDistance; //***for tractor distance viewing purposes***
+    private bool m_bIsWarning;
+    public bool IsWarning { get { return m_bIsWarning; } }
+    private bool m_bSnapped;
+    public bool Snapped { get { return m_bSnapped; } }
 
     private Vector3 m_vFacing = Vector3.zero; //***FOR READING PURPOSES ONLY***
     public Vector3 Facing { get { return m_vFacing.normalized; } }
 
     void Awake() {
+
         m_vFacing = Vector3.zero;
         if (!m_gLeft) m_gLeft = GameObject.Find(m_sLeftName);
         if (!m_gRight) m_gRight = GameObject.Find(m_sRightName);
+        m_gLinks = GameObject.FindGameObjectsWithTag(m_sLinkName);
     }
 
     // Start is called before the first frame update
@@ -40,6 +51,10 @@ public class PlayerPositioning : MonoBehaviour
         }
 
         m_fDistance = TractorDistance();
+
+        m_bIsWarning = m_fDistance > m_fWarningDistance;
+        m_bSnapped = m_fDistance > m_fSnapDistance;
+
     }
 
     void SetPosition() {
@@ -73,6 +88,14 @@ public class PlayerPositioning : MonoBehaviour
         Vector3 dist = (m_gRight.transform.position - m_gLeft.transform.position);
         return dist.sqrMagnitude;
     }
+
+    void UpdateDistances() {
+        //think of a mechanism to signal the the number of links has changed.
+        //TODO: Refactor these hard-coded numbers...
+        m_fWarningDistance = 2.0f * (m_gLinks.Length - 1);
+        m_fSnapDistance = m_fWarningDistance + 7.0f;
+    }
+    
     /*
     IEnumerator DelayedPrint() {
         while (true) {
