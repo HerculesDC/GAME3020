@@ -278,7 +278,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8580625511815272790}
   serializedVersion: 2
-  m_Mass: 1300
+  m_Mass: 130
   m_Drag: 0.05
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -312,9 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Tractor: -1
-  m_input: {fileID: 0}
   m_vrbOffset: {x: 0, y: -1.1, z: -0.5}
-  m_fAcceleration: 100000
+  m_fAcceleration: 1000
   m_fTurn: 45
   m_wTurnWheels:
   - {fileID: 8580625512220981483}
@@ -339,8 +338,9 @@ MonoBehaviour:
   m_VerticalAxisName: 
   m_HorizontalAxisName: 
   m_BrakeName: 
-  m_ConfirmName: Confirm
-  m_CancelName: Cancel
+  m_PauseName: 
+  m_ConfirmName: 
+  m_CancelName: 
 --- !u!1 &8580625512124198436
 GameObject:
   m_ObjectHideFlags: 0

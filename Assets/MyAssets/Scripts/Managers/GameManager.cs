@@ -46,18 +46,20 @@ public class GameManager : MonoBehaviour
 
         //To do: Rethink using GetButton. Looks a tad more expensive than GetKey
         if (m_scene.buildIndex == 0) {
-            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Confirm")){
+            if (Input.GetButtonDown("Pause")){
 
                 m_gCurState = GameStates.LVL1;
                 SceneManager.LoadScene(1);
             }
         }
         if (m_scene.buildIndex == 1) {
-            if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.Joystick1Button0)) {
+            if (Input.GetKey(KeyCode.JoystickButton0)) {
 
+                /*
                 m_gPrevState = m_gCurState;
                 m_gCurState = GameStates.LOSE;
                 SceneManager.LoadScene(2);
+                */
             }
         }
         UIManager.Instance.OnLevelChange();

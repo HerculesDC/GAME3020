@@ -10,6 +10,9 @@ TagManager:
   - Tree
   - Tractor
   - PAUSE_UI
+  - LEVEL_INST
+  - WARNING_UI
+  - INTRO_UI
   layers:
   - Default
   - TransparentFX

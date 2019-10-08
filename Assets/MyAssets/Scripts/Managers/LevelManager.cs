@@ -6,10 +6,13 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int m_iLevelIndex;
     public int LevelIndex { get { return m_iLevelIndex; } }
-    
+
+    private static bool m_bTutorialTime;
+    public static bool TutorialTime { get { return m_bTutorialTime; } }
+        
     //time, in seconds
     [SerializeField] private float m_fTimer = 0;
-    [SerializeField] public int Timer { get { return (int)m_fTimer; } }
+    public int Timer { get { return (int)m_fTimer; } }
 
     //tree counters
     //The level is pretty much an observer
@@ -23,23 +26,21 @@ public class LevelManager : MonoBehaviour
 
     void Awake() {
 
+        if (GameManager.Instance.CurrentState == GameStates.LVL1) m_bTutorialTime = true;
+        else m_bTutorialTime = false;
         m_aTrees = GameObject.FindGameObjectsWithTag("Tree");    
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        if (m_aTrees.Length == 0) {
-            m_aTrees = GameObject.FindGameObjectsWithTag("Tree");
-        }
-        //*/
+    
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (GameManager.Instance.CurrentState != GameStates.PAUSE) m_fTimer += Time.deltaTime;
+        if (m_bTutorialTime || GameManager.Instance.CurrentState != GameStates.PAUSE) m_fTimer += Time.deltaTime;
     }
 
     void OnReset() {

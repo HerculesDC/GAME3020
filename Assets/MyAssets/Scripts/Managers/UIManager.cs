@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
 
         if (!m_canvas) m_canvas = this.gameObject.GetComponent<Canvas>();
 
+        m_aTexts = GetComponentsInChildren<Text>(true); //true refers to "include inactive"
+
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -42,6 +44,29 @@ public class UIManager : MonoBehaviour
     //WILL REQUIRE REFACTORING
     void DetectScene() {
 
+        switch (GameManager.Instance.CurrentState) {
+            case GameStates.INTRO:
+                foreach (Text t in m_aTexts) {
+                    if (t != null) {
+                        if (t.tag == "INTRO_UI") t.enabled = true;
+                        else t.enabled = false;
+                    }
+                }
+                break;
+            case GameStates.LVL1:
+            case GameStates.LVL2:
+            case GameStates.LVL3:
+                foreach (Text t in m_aTexts){
+                    if (t != null) {
+                        if (t.tag != "LEVEL_UI") t.enabled = true;
+                        else t.enabled = false;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        /*
         if (GameManager.Instance.CurrentState == GameStates.LVL1 ||
             GameManager.Instance.CurrentState == GameStates.LVL2 ||
             GameManager.Instance.CurrentState == GameStates.LVL3)
@@ -78,6 +103,7 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     void UpdateUI() {
