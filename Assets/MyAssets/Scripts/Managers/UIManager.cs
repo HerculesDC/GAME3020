@@ -57,10 +57,7 @@ public class UIManager : MonoBehaviour
             case GameStates.LVL2:
             case GameStates.LVL3:
                 foreach (Text t in m_aTexts){
-                    if (t != null) {
-                        if (t.tag != "LEVEL_UI") t.enabled = true;
-                        else t.enabled = false;
-                    }
+                    t.enabled = false;
                 }
                 break;
             default:

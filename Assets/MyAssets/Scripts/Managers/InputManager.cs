@@ -47,16 +47,17 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //enforcing AI check, because I'not confident in Unity's component initialization
-        if (m_tTractor == Tractor.AI && m_ai == null) m_ai = this.gameObject.GetComponent<AIPlay>();
-
         if (m_tTractor != Tractor.AI) {
+
             if (GameManager.Instance.CurrentState == GameStates.LVL1 && LevelManager.TutorialTime) {
 
                 m_bConfirm = m_ConfirmName != "" ? Input.GetButtonDown(m_ConfirmName) : false;
             }
-            else {
+            else if(GameManager.Instance.CurrentState == GameStates.LVL1 ||
+                    GameManager.Instance.CurrentState == GameStates.LVL2 ||
+                    GameManager.Instance.CurrentState == GameStates.LVL3 &&
+                    !LevelManager.TutorialTime)
+            {
 
                 //It may be the case for creating a dead zone for acceleration
                 m_fAccel = Input.GetAxis(m_VerticalAxisName);
@@ -71,11 +72,17 @@ public class InputManager : MonoBehaviour
             }
             
         }
-        else {
+        else { //for whatever reason, this is running even when the tractors are NOT AI
             //AI-wise, only movement input is relevant
-            m_fAccel = m_ai.Accelerate();
-            m_fTurn = m_ai.Steer();
-            m_bBrake = m_ai.Brake();
+            if (m_ai) {
+
+                m_fAccel = m_ai.Accelerate();
+                m_fTurn = m_ai.Steer();
+                m_bBrake = m_ai.Brake();
+            }
+            else {
+                m_ai = this.gameObject.GetComponent<AIPlay>();
+            }
         }
     }
 

@@ -11,10 +11,12 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private GameObject m_gPlayer;
                      private PlayerPositioning m_ppPlayer = null;
 
+    [SerializeField] private Vector3 m_vOffset;
     [SerializeField] private float m_fMinDistance;
     [SerializeField] private float m_fDistance;
     [SerializeField] private float m_fMaxDistance;
     [SerializeField] private float m_fApproach;
+    
 
     private Camera m_cam = null;
     private Rigidbody m_rb = null;
@@ -32,8 +34,8 @@ public class CameraFollow : MonoBehaviour
         m_rb = this.gameObject.GetComponent<Rigidbody>();
         m_cam = this.gameObject.GetComponent<Camera>();
 
-        if (!m_gPlayer)
-        {
+        if (!m_gPlayer) {
+
             m_gPlayer = GameObject.Find(m_sPlayerName);
             if (m_gPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
             else { }
@@ -46,8 +48,8 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!m_gPlayer)
-        {
+        if (!m_gPlayer) {
+
             m_gPlayer = GameObject.Find(m_sPlayerName);
             if (m_gPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
         }
@@ -59,8 +61,8 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         //Code for finding player. Will have to be updated, based on game state
-        if (!m_gPlayer)
-        {
+        if (!m_gPlayer) {
+
             m_gPlayer = GameObject.Find(m_sPlayerName);
             if (m_gPlayer) m_ppPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
         }        
@@ -74,10 +76,17 @@ public class CameraFollow : MonoBehaviour
     void HandlePlayer() {
         //Rework this math
         //CHECK AGAIN
-        m_fDistance = Mathf.Clamp((m_ppPlayer.TractorDistance() * m_fApproach), m_fMinDistance, m_fMaxDistance);
-        this.gameObject.transform.position = m_gPlayer.transform.forward * -m_fDistance;
-        this.gameObject.transform.position += m_gPlayer.transform.position;
-        this.gameObject.transform.position += Vector3.up * 5;
-        this.gameObject.transform.LookAt(m_gPlayer.transform.position);
+        
+        //m_fDistance = Mathf.Clamp((m_ppPlayer.TractorDistance() * m_fApproach), m_fMinDistance, m_fMaxDistance);
+        //Vector3 temp = m_gPlayer.transform.forward * -1;
+        //temp *= m_fDistance;
+        //this.gameObject.transform.position += Vector3.up * 5;
+        //this.gameObject.transform.LookAt(m_gPlayer.transform.position);
+
+        
+        m_vOffset.y = 0.5f * m_ppPlayer.TractorDistance();
+        
+        this.m_rb.position = m_gPlayer.transform.position + m_vOffset;
+        this.gameObject.transform.LookAt(m_gPlayer.transform);
     }
 }

@@ -42,12 +42,13 @@ public class PlayerPositioning : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (m_gLeft && m_gRight)
-        {
+        if (m_gLeft && m_gRight) {
+
             SetPosition();
             SetFacing();
+            UpdateDistances();
         }
 
         m_fDistance = TractorDistance();
@@ -55,6 +56,7 @@ public class PlayerPositioning : MonoBehaviour
         m_bIsWarning = m_fDistance > m_fWarningDistance;
         m_bSnapped = m_fDistance > m_fSnapDistance;
 
+        CheckSnap();
     }
 
     void SetPosition() {
@@ -65,20 +67,6 @@ public class PlayerPositioning : MonoBehaviour
 
     void SetFacing() {
 
-        //THIS LOOKS UGLY AND INEFFICIENT... (but it works, so I'll leave it for now)
-        /*
-        float tempX = m_gRight.transform.position.x - m_gLeft.transform.position.x;
-        float tempZ = m_gRight.transform.position.z - m_gLeft.transform.position.z;
-
-        float angle = Mathf.Atan2(tempZ, tempX);
-
-        tempX = Mathf.Cos(angle);
-        tempZ = Mathf.Sin(angle);
-        m_vFacing = new Vector3(-tempZ, 0, tempX);
-        m_vFacing.Normalize();
-
-        this.gameObject.transform.LookAt(this.gameObject.transform.position + m_vFacing);
-        */
         this.gameObject.transform.rotation = Quaternion.Slerp(m_gLeft.transform.rotation, m_gRight.transform.rotation, 0.5f);
         m_vFacing = this.gameObject.transform.position + this.gameObject.transform.forward;
     }
@@ -86,7 +74,7 @@ public class PlayerPositioning : MonoBehaviour
     public float TractorDistance() {
 
         Vector3 dist = (m_gRight.transform.position - m_gLeft.transform.position);
-        return dist.sqrMagnitude;
+        return dist.magnitude;
     }
 
     void UpdateDistances() {
@@ -94,6 +82,14 @@ public class PlayerPositioning : MonoBehaviour
         //TODO: Refactor these hard-coded numbers...
         m_fWarningDistance = 2.0f * (m_gLinks.Length - 1);
         m_fSnapDistance = m_fWarningDistance + 7.0f;
+    }
+
+    private void CheckSnap() {
+
+        if (m_bSnapped) {
+            foreach (GameObject g in m_gLinks)
+                Destroy(g.GetComponent<HingeJoint>());
+        }
     }
     
     /*

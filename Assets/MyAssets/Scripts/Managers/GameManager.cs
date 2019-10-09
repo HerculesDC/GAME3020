@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         LevelLoader();
-        CheckPause();
+        //CheckPause();
     }
 
     void LevelLoader() { 

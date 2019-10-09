@@ -26,8 +26,9 @@ public class LevelManager : MonoBehaviour
 
     void Awake() {
 
-        if (GameManager.Instance.CurrentState == GameStates.LVL1) m_bTutorialTime = true;
-        else m_bTutorialTime = false;
+        //***UNCOMMENT THESE LINES WHEN READY!!!
+        //if (GameManager.Instance.CurrentState == GameStates.LVL1) m_bTutorialTime = true;
+        //else m_bTutorialTime = false;
         m_aTrees = GameObject.FindGameObjectsWithTag("Tree");    
     }
 

@@ -236,6 +236,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1213967518, guid: df708fa263b3c6a40b12a0ec60bf79af, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213967518, guid: df708fa263b3c6a40b12a0ec60bf79af, type: 3}
+      propertyPath: m_TagString
+      value: WARNING_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384772154107281382, guid: df708fa263b3c6a40b12a0ec60bf79af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3046542434582466273, guid: df708fa263b3c6a40b12a0ec60bf79af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,11 +363,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: INTRO_UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5384772154107281382, guid: df708fa263b3c6a40b12a0ec60bf79af,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2685762224659988643, guid: df708fa263b3c6a40b12a0ec60bf79af,
         type: 3}
@@ -498,6 +506,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245350407969143045, guid: c5d32f01e77767640bcefb630db26468,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245350407969143044, guid: c5d32f01e77767640bcefb630db26468,
+        type: 3}
+      propertyPath: m_vOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245350407969143044, guid: c5d32f01e77767640bcefb630db26468,
+        type: 3}
+      propertyPath: m_vOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245350407969143044, guid: c5d32f01e77767640bcefb630db26468,
+        type: 3}
+      propertyPath: m_vOffset.z
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5d32f01e77767640bcefb630db26468, type: 3}

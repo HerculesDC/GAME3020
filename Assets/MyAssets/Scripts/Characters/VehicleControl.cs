@@ -27,12 +27,14 @@ public class VehicleControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (m_input) m_input.SetTractor(m_Tractor);
         m_rb.centerOfMass += m_vrbOffset;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (m_input && m_input.Tractor != m_Tractor) m_input.SetTractor(m_Tractor);
         Move();
         Turn();
     }
