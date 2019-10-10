@@ -49,9 +49,9 @@ MonoBehaviour:
   m_sRightName: RightTractor
   m_gRight: {fileID: 0}
   m_sLinkName: Chain
-  m_gLinks: []
   m_fWarningDistance: 0
   m_fSnapDistance: 0
+  m_fTolerance: 7
   m_fDistance: 0
 --- !u!1 &5634850748945971033
 GameObject:

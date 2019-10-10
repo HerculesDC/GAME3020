@@ -3775,6 +3775,11 @@ PrefabInstance:
       propertyPath: m_iLevelIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7093246375244049371, guid: 504dede361f2b66458ff98e4e1c19669,
+        type: 3}
+      propertyPath: m_gPlayer
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 504dede361f2b66458ff98e4e1c19669, type: 3}
 --- !u!1001 &8517031739561337672

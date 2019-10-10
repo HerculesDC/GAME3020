@@ -16,6 +16,7 @@ public class PlayerPositioning : MonoBehaviour
 
     [SerializeField] private float m_fWarningDistance;
     [SerializeField] private float m_fSnapDistance;
+    [SerializeField] private float m_fTolerance;
     [SerializeField] private float m_fDistance; //***for tractor distance viewing purposes***
 
     private bool m_bIsWarning;
@@ -57,10 +58,13 @@ public class PlayerPositioning : MonoBehaviour
 
         m_fDistance = TractorDistance();
 
-        m_bIsWarning = m_fDistance > m_fWarningDistance;
-        m_bSnapped = m_fDistance > m_fSnapDistance;
+        //three conditions, included to disable warning from triggering when snapped and less than snap distance
+        m_bIsWarning = m_fDistance > m_fWarningDistance && m_fDistance < m_fSnapDistance && !m_bSnapped;
 
-        CheckSnap();
+        if (!m_bSnapped)
+            m_bSnapped = m_fDistance >= m_fSnapDistance;
+        else
+            Snap();
     }
 
     void SetPosition() {
@@ -84,20 +88,17 @@ public class PlayerPositioning : MonoBehaviour
     void UpdateDistances() {
         //think of a mechanism to signal the the number of links has changed.
         //TODO: Refactor these hard-coded numbers...
-        m_fWarningDistance = 2.0f * (m_gLinks.Length - 1);
-        m_fSnapDistance = m_fWarningDistance + 10.0f;
+        m_fWarningDistance = 2.0f * m_gLinks.Length;
+        m_fSnapDistance = m_fWarningDistance + m_fTolerance;
     }
 
-    private void CheckSnap() {
+    private void Snap() {
 
-        if (m_bSnapped) {
-            Destroy(m_gRight.GetComponent<HingeJoint>());
+        Destroy(m_gRight.GetComponent<HingeJoint>());
+        foreach (Transform g in m_gLinks)
+            Destroy(g.GetComponent<HingeJoint>());
 
-            foreach (Transform g in m_gLinks)
-                Destroy(g.GetComponent<HingeJoint>());
-
-            DisableInput();
-        }
+        DisableInput();
     }
 
     public void DisableInput() {

@@ -31,6 +31,11 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (Transform t in m_gUIElements){
+
+            if (t.gameObject.name == "Canvas") t.gameObject.SetActive(true);
+            else t.gameObject.SetActive(false);
+        }
         DetectScene();
     }
 
@@ -41,72 +46,40 @@ public class UIManager : MonoBehaviour
         UpdateUI();
     }
 
-    //WILL REQUIRE REFACTORING
+    //WILL REQUIRE REFACTORING. This function is turning expensive, and it doesn't need to be called every frame.
     void DetectScene() {
-
-        foreach (Transform t in m_gUIElements) {
-
-            if (t.gameObject.name == "Canvas") t.gameObject.SetActive(true);
-            else t.gameObject.SetActive(false);
-        }
 
         switch (GameManager.Instance.CurrentState) {
             case GameStates.INTRO:
                 foreach (Transform t in m_gUIElements) {
-                    if (t.gameObject.tag == "INTRO_UI") t.gameObject.SetActive(true);
+                    if (t.gameObject.tag == "INTRO_UI" && !t.gameObject.activeInHierarchy) t.gameObject.SetActive(true);
                 }
                 break;
             case GameStates.LVL1:
             case GameStates.LVL2:
             case GameStates.LVL3:
                 foreach (Transform t in m_gUIElements) {
-                    if (t.gameObject.tag == "LEVEL_UI") t.gameObject.SetActive(true);
-                    if (m_level.Warning && t.gameObject.tag == "WARNING_UI") t.gameObject.SetActive(true);
-                    if (m_level.Snapped && t.gameObject.tag == "SNAPPED_UI") t.gameObject.SetActive(true);
+                    //Shuts sown Intro
+                    if (t.gameObject.tag == "INTRO_UI" && t.gameObject.activeInHierarchy) t.gameObject.SetActive(false);
+
+                    if (t.gameObject.tag == "LEVEL_UI" && !t.gameObject.activeInHierarchy) t.gameObject.SetActive(true);
+
+                    if (m_level) {
+
+                        if (m_level.Warning && t.gameObject.tag == "WARNING_UI" && !t.gameObject.activeInHierarchy) t.gameObject.SetActive(true);
+                        else if ((!m_level.Warning || m_level.Snapped) && t.gameObject.tag == "WARNING_UI" && t.gameObject.activeInHierarchy) {
+                            t.gameObject.SetActive(false);
+                        }
+
+                        if (m_level.Snapped && t.gameObject.tag == "SNAPPED_UI" && !t.gameObject.activeInHierarchy) t.gameObject.SetActive(true);
+                        else if (!m_level.Snapped && t.gameObject.tag == "SNAPPED_UI" && t.gameObject.activeInHierarchy) t.gameObject.SetActive(false);
+                    }
                 }
                 break;
             default:
                 break;
         
         }
-        /*
-        if (GameManager.Instance.CurrentState == GameStates.LVL1 ||
-            GameManager.Instance.CurrentState == GameStates.LVL2 ||
-            GameManager.Instance.CurrentState == GameStates.LVL3)
-        {
-            foreach (Text t in m_aTexts) {
-                if (t != null && t.gameObject.tag != "LEVEL_UI" && t.isActiveAndEnabled) {
-                    t.SetActive( false;
-                }
-                if (t != null && t.gameObject.tag == "LEVEL_UI" && !t.isActiveAndEnabled) {
-                    t.SetActive( true;
-                }
-            }
-        }
-        if (GameManager.Instance.CurrentState == GameStates.INTRO ||
-            GameManager.Instance.CurrentState == GameStates.START ||
-            GameManager.Instance.CurrentState == GameStates.LOSE  ||
-            GameManager.Instance.CurrentState == GameStates.WIN) {
-            foreach (Text t in m_aTexts) {
-                if (t != null && t.gameObject.tag == "MENU_UI" && !t.isActiveAndEnabled) {
-                    t.SetActive( true;
-                }
-                if (t != null && t.gameObject.tag != "MENU_UI" && t.isActiveAndEnabled){
-                    t.SetActive( false;
-                }
-            }
-        }
-        if (GameManager.Instance.CurrentState == GameStates.PAUSE) {
-            foreach (Text t in m_aTexts) {
-                if (t != null && t.gameObject.tag == "PAUSE_UI" && !t.isActiveAndEnabled) {
-                    t.SetActive( true;
-                }
-                if (t != null && t.gameObject.tag != "PAUSE_UI" && t.isActiveAndEnabled) {
-                    t.SetActive( false;
-                }
-            }
-        }
-        */
     }
 
     void UpdateUI() {
