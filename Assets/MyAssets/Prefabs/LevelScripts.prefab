@@ -46,3 +46,5 @@ MonoBehaviour:
   m_iLevelIndex: 0
   m_fTimer: 0
   m_iTrees: 0
+  m_gPlayer: {fileID: 5634850748603685698, guid: 751e683895f353e4fbaf979fe8b953a7,
+    type: 3}

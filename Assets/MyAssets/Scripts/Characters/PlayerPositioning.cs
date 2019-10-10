@@ -12,17 +12,18 @@ public class PlayerPositioning : MonoBehaviour
     [SerializeField] private GameObject m_gRight;
 
     [SerializeField] private string m_sLinkName;
-    [SerializeField] private GameObject[] m_gLinks;
+    private Transform[] m_gLinks;
 
     [SerializeField] private float m_fWarningDistance;
     [SerializeField] private float m_fSnapDistance;
     [SerializeField] private float m_fDistance; //***for tractor distance viewing purposes***
+
     private bool m_bIsWarning;
     public bool IsWarning { get { return m_bIsWarning; } }
     private bool m_bSnapped;
     public bool Snapped { get { return m_bSnapped; } }
 
-    private Vector3 m_vFacing = Vector3.zero; //***FOR READING PURPOSES ONLY***
+    private Vector3 m_vFacing = Vector3.zero; /***FOR READING PURPOSES ONLY***/
     public Vector3 Facing { get { return m_vFacing.normalized; } }
 
     void Awake() {
@@ -30,7 +31,11 @@ public class PlayerPositioning : MonoBehaviour
         m_vFacing = Vector3.zero;
         if (!m_gLeft) m_gLeft = GameObject.Find(m_sLeftName);
         if (!m_gRight) m_gRight = GameObject.Find(m_sRightName);
-        m_gLinks = GameObject.FindGameObjectsWithTag(m_sLinkName);
+
+        GameObject[]temp = GameObject.FindGameObjectsWithTag(m_sLinkName);
+        m_gLinks = new Transform[temp.Length];
+
+        for (int i = 0; i < temp.Length; ++i) m_gLinks[i] = temp[i].transform;
     }
 
     // Start is called before the first frame update
@@ -38,7 +43,6 @@ public class PlayerPositioning : MonoBehaviour
     {
         if (!m_gLeft) m_gLeft = GameObject.Find(m_sLeftName);
         if (!m_gRight) m_gRight = GameObject.Find(m_sRightName);
-        //StartCoroutine(DelayedPrint());
     }
 
     // Update is called once per frame
@@ -81,23 +85,24 @@ public class PlayerPositioning : MonoBehaviour
         //think of a mechanism to signal the the number of links has changed.
         //TODO: Refactor these hard-coded numbers...
         m_fWarningDistance = 2.0f * (m_gLinks.Length - 1);
-        m_fSnapDistance = m_fWarningDistance + 7.0f;
+        m_fSnapDistance = m_fWarningDistance + 10.0f;
     }
 
     private void CheckSnap() {
 
         if (m_bSnapped) {
-            foreach (GameObject g in m_gLinks)
+            Destroy(m_gRight.GetComponent<HingeJoint>());
+
+            foreach (Transform g in m_gLinks)
                 Destroy(g.GetComponent<HingeJoint>());
+
+            DisableInput();
         }
     }
-    
-    /*
-    IEnumerator DelayedPrint() {
-        while (true) {
-            yield return new WaitForSeconds(2.0f);
-            Debug.Log(m_vFacing);
-        }
+
+    public void DisableInput() {
+
+        m_gRight.GetComponent<InputManager>().enabled = false;
+        m_gLeft.GetComponent<InputManager>().enabled = false;
     }
-    //*/
 }

@@ -76,14 +76,16 @@ public class CameraFollow : MonoBehaviour
     void HandlePlayer() {
         //Rework this math
         //CHECK AGAIN
-        
+
         //m_fDistance = Mathf.Clamp((m_ppPlayer.TractorDistance() * m_fApproach), m_fMinDistance, m_fMaxDistance);
         //Vector3 temp = m_gPlayer.transform.forward * -1;
         //temp *= m_fDistance;
         //this.gameObject.transform.position += Vector3.up * 5;
         //this.gameObject.transform.LookAt(m_gPlayer.transform.position);
 
-        
+        m_fDistance = Mathf.Max(m_fMinDistance, m_ppPlayer.TractorDistance());
+        m_vOffset = m_gPlayer.transform.forward * m_fDistance * -1;
+        //m_vOffset += m_gPlayer.transform.position;
         m_vOffset.y = 0.5f * m_ppPlayer.TractorDistance();
         
         this.m_rb.position = m_gPlayer.transform.position + m_vOffset;

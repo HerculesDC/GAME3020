@@ -23,6 +23,13 @@ public class LevelManager : MonoBehaviour
     public int AllTrees { get { return m_aTrees.Length; } }
 
     private GameObject m_level;
+    [SerializeField] private GameObject m_gPlayer;
+                     private PlayerPositioning m_pPlayer;
+
+    private bool m_bWarn;
+    public bool Warning { get { return m_bWarn; } }
+    private bool m_bSnap;
+    public bool Snapped { get { return m_bSnap; } }
 
     void Awake() {
 
@@ -35,13 +42,15 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        m_pPlayer = m_gPlayer.GetComponent<PlayerPositioning>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if (m_bTutorialTime || GameManager.Instance.CurrentState != GameStates.PAUSE) m_fTimer += Time.deltaTime;
+        m_bWarn = m_pPlayer.IsWarning;
+        m_bSnap = m_pPlayer.Snapped;
     }
 
     void OnReset() {

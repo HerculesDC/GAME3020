@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     private Canvas m_canvas = null;
     //Question: is it better to make an array from the get-go,
     //or try and find things dynamically?
-    [SerializeField] private Text[] m_aTexts;
+    [SerializeField] private Transform[] m_gUIElements;
 
     [SerializeField] private LevelManager m_level = null;
 
@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
 
         if (!m_canvas) m_canvas = this.gameObject.GetComponent<Canvas>();
 
-        m_aTexts = GetComponentsInChildren<Text>(true); //true refers to "include inactive"
+        m_gUIElements = this.gameObject.GetComponentsInChildren<Transform>(true); //true refers to "include inactive"
 
         DontDestroyOnLoad(this.gameObject);
     }
@@ -44,24 +44,30 @@ public class UIManager : MonoBehaviour
     //WILL REQUIRE REFACTORING
     void DetectScene() {
 
+        foreach (Transform t in m_gUIElements) {
+
+            if (t.gameObject.name == "Canvas") t.gameObject.SetActive(true);
+            else t.gameObject.SetActive(false);
+        }
+
         switch (GameManager.Instance.CurrentState) {
             case GameStates.INTRO:
-                foreach (Text t in m_aTexts) {
-                    if (t != null) {
-                        if (t.tag == "INTRO_UI") t.enabled = true;
-                        else t.enabled = false;
-                    }
+                foreach (Transform t in m_gUIElements) {
+                    if (t.gameObject.tag == "INTRO_UI") t.gameObject.SetActive(true);
                 }
                 break;
             case GameStates.LVL1:
             case GameStates.LVL2:
             case GameStates.LVL3:
-                foreach (Text t in m_aTexts){
-                    t.enabled = false;
+                foreach (Transform t in m_gUIElements) {
+                    if (t.gameObject.tag == "LEVEL_UI") t.gameObject.SetActive(true);
+                    if (m_level.Warning && t.gameObject.tag == "WARNING_UI") t.gameObject.SetActive(true);
+                    if (m_level.Snapped && t.gameObject.tag == "SNAPPED_UI") t.gameObject.SetActive(true);
                 }
                 break;
             default:
                 break;
+        
         }
         /*
         if (GameManager.Instance.CurrentState == GameStates.LVL1 ||
@@ -69,11 +75,11 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.CurrentState == GameStates.LVL3)
         {
             foreach (Text t in m_aTexts) {
-                if (t != null && t.tag != "LEVEL_UI" && t.isActiveAndEnabled) {
-                    t.enabled = false;
+                if (t != null && t.gameObject.tag != "LEVEL_UI" && t.isActiveAndEnabled) {
+                    t.SetActive( false;
                 }
-                if (t != null && t.tag == "LEVEL_UI" && !t.isActiveAndEnabled) {
-                    t.enabled = true;
+                if (t != null && t.gameObject.tag == "LEVEL_UI" && !t.isActiveAndEnabled) {
+                    t.SetActive( true;
                 }
             }
         }
@@ -82,21 +88,21 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.CurrentState == GameStates.LOSE  ||
             GameManager.Instance.CurrentState == GameStates.WIN) {
             foreach (Text t in m_aTexts) {
-                if (t != null && t.tag == "MENU_UI" && !t.isActiveAndEnabled) {
-                    t.enabled = true;
+                if (t != null && t.gameObject.tag == "MENU_UI" && !t.isActiveAndEnabled) {
+                    t.SetActive( true;
                 }
-                if (t != null && t.tag != "MENU_UI" && t.isActiveAndEnabled){
-                    t.enabled = false;
+                if (t != null && t.gameObject.tag != "MENU_UI" && t.isActiveAndEnabled){
+                    t.SetActive( false;
                 }
             }
         }
         if (GameManager.Instance.CurrentState == GameStates.PAUSE) {
             foreach (Text t in m_aTexts) {
-                if (t != null && t.tag == "PAUSE_UI" && !t.isActiveAndEnabled) {
-                    t.enabled = true;
+                if (t != null && t.gameObject.tag == "PAUSE_UI" && !t.isActiveAndEnabled) {
+                    t.SetActive( true;
                 }
-                if (t != null && t.tag != "PAUSE_UI" && t.isActiveAndEnabled) {
-                    t.enabled = false;
+                if (t != null && t.gameObject.tag != "PAUSE_UI" && t.isActiveAndEnabled) {
+                    t.SetActive( false;
                 }
             }
         }
@@ -110,10 +116,10 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.CurrentState == GameStates.LVL3) {
 
             if (m_level) {
-                foreach (Text t in m_aTexts) {
+                foreach (Transform t in m_gUIElements) {
 
-                    if (t.name == "Timer") t.text = "Time: " + m_level.Timer;
-                    if (t.name == "Trees") t.text = "Trees: " + m_level.Trees + "/" +m_level.AllTrees;
+                    if (t.name == "Timer") t.GetComponent<Text>().text = "Time: " + m_level.Timer;
+                    if (t.name == "Trees") t.GetComponent<Text>().text = "Trees: " + m_level.Trees + "/" +m_level.AllTrees;
                 }
             }
         }
@@ -140,15 +146,15 @@ public class UIManager : MonoBehaviour
     /*
     public void OnPause() {
         foreach (Text t in m_aTexts) {
-            if (t && t.tag != "PAUSE_UI" && t.isActiveAndEnabled) t.enabled = false;
-            if (t && t.tag == "PAUSE_UI" && !t.isActiveAndEnabled) t.enabled = true;
+            if (t && t.gameObject.tag != "PAUSE_UI" && t.isActiveAndEnabled) t.SetActive( false;
+            if (t && t.gameObject.tag == "PAUSE_UI" && !t.isActiveAndEnabled) t.SetActive( true;
         }        
     }
 
     public void OnResume() {
         foreach (Text t in m_aTexts) {
             
-            if (t && t.tag == "PAUSE_UI" && t.isActiveAndEnabled) t.enabled = false;
+            if (t && t.gameObject.tag == "PAUSE_UI" && t.isActiveAndEnabled) t.SetActive( false;
         }
     }
     //*/

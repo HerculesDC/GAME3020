@@ -13,6 +13,8 @@ TagManager:
   - LEVEL_INST
   - WARNING_UI
   - INTRO_UI
+  - SNAPPED_UI
+  - BUTTON_UI
   layers:
   - Default
   - TransparentFX
