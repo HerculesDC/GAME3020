@@ -40,15 +40,6 @@ public class VehicleControl : MonoBehaviour
     }
 
     void Move() {
-        /* TODO: Think of alternatives to constrain tractors' positions 
-         * so as to avoid breaking the chain.
-         *  The possibilities (so far) are:
-         *      -> "THE CHAIN WILL SNAP!!!" kinda warning
-         *      -> Having each tractor know of the other
-         *      -> Have the "player manager" constrain those positions
-         *      -> Play around with the forces so that the physics system does the managing
-         *      (Worth noting: IRL, the chain would break...)
-         */
 
         if (!m_input.Brake)
         {

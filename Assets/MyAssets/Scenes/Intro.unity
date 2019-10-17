@@ -508,5 +508,10 @@ PrefabInstance:
       propertyPath: m_vOffset.z
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 8245350407969143044, guid: c5d32f01e77767640bcefb630db26468,
+        type: 3}
+      propertyPath: m_fMinDistance
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5d32f01e77767640bcefb630db26468, type: 3}

@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     private AIPlay m_ai = null;
 
     [SerializeField] private string m_VerticalAxisName;
+    [SerializeField] private float m_fForwardOffset;
     private float m_fAccel;
     public float Accel { get { return m_fAccel; } }
     [SerializeField] private string m_HorizontalAxisName;
@@ -60,7 +61,7 @@ public class InputManager : MonoBehaviour
             {
 
                 //It may be the case for creating a dead zone for acceleration
-                m_fAccel = Input.GetAxis(m_VerticalAxisName);
+                m_fAccel = Input.GetAxis(m_VerticalAxisName) + m_fForwardOffset;
                 m_fTurn = Input.GetAxis(m_HorizontalAxisName);
 
                 //Brakes have to be applied every frame the brakes are pulled

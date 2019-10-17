@@ -13,7 +13,7 @@ public enum GameStates { START = 0,
                          STATE_COUNT = INTRO << 7 }
 
 //just to be on the safe side...
-public enum Tractor { LEFT = -1, AI = 0, RIGHT = 1 }
+public enum Tractor { NONE = -1, AI = 0, RIGHT = 1, LEFT = 2}
 
 public class Helpers : MonoBehaviour
 {
