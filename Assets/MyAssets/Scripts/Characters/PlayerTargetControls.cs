@@ -33,7 +33,7 @@ public class PlayerTargetControls : MonoBehaviour
         Vector3 temp = Vector3.zero;
         temp.x += m_im.Turn * m_fVelocity * Time.deltaTime;
         temp.z += m_im.Accel * m_fVelocity * Time.deltaTime;
-        m_rb.position += temp;
-        //m_rb.position += !m_im.Brake? temp : Vector3.zero;
+        //m_rb.position += temp; //DEBUG CODE FOR TESTING!!!
+        m_rb.position += !m_im.Brake? temp : Vector3.zero;
     }
 }
