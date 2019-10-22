@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
 
         m_scene = SceneManager.GetActiveScene();
 
-        m_gCurState = m_gPrevState = GameStates.INTRO;
+        /***REENABLE THIS LINE***
+        //m_gCurState = m_gPrevState = GameStates.INTRO;
+        //*/
 
         DontDestroyOnLoad(this.gameObject);
     }
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LevelLoader();
+        //LevelLoader();
         //CheckPause();
     }
 

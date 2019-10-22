@@ -9,11 +9,11 @@ public class InputManager : MonoBehaviour
     private AIPlay m_ai = null;
 
     [SerializeField] private string m_VerticalAxisName;
-    [SerializeField] private float m_fForwardOffset;
-    private float m_fAccel;
+    [SerializeField] private float m_fForwardOffset; //FOR TEST PURPOSES
+    [SerializeField] private float m_fAccel; //VISUALIZATION: REMOVE SERIALIZATION LATER
     public float Accel { get { return m_fAccel; } }
     [SerializeField] private string m_HorizontalAxisName;
-    private float m_fTurn;
+    [SerializeField] private float m_fTurn; //VISUALIZATION: REMOVE SERIALIZATION LATER
     public float Turn { get { return m_fTurn; } }
 
     /* IMPORTANT!
@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
      * 1 for the "southern" button of the right hand
      */
     [SerializeField] private string m_BrakeName;
-    private bool m_bBrake;
+    [SerializeField] private bool m_bBrake; //VISUALIZATION: REMOVE SERIALIZATION LATER
     public bool Brake { get { return m_bBrake; } }
 
     [SerializeField] private string m_PauseName;
@@ -36,28 +36,30 @@ public class InputManager : MonoBehaviour
     private bool m_bCancel;
     public bool Cancel { get { return m_bCancel; } }
 
+    private GameStates m_gLevelStates;
+
     void Awake() {
-        if (m_tTractor == Tractor.AI && m_ai == null) m_ai = this.gameObject.GetComponent<AIPlay>();
+        if ((m_tTractor & Tractor.AI) != 0 && m_ai == null) m_ai = this.gameObject.GetComponent<AIPlay>();
+        m_gLevelStates = GameStates.LVL1 | GameStates.LVL2 | GameStates.LVL3;
     }
 
     //enforcing AI check
     void Start() {
-        if (m_tTractor == Tractor.AI && m_ai == null) m_ai = this.gameObject.GetComponent<AIPlay>();
+        if ((m_tTractor & Tractor.AI) != 0 && m_ai == null) m_ai = this.gameObject.GetComponent<AIPlay>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (m_tTractor != Tractor.AI) {
+        if ((m_tTractor & Tractor.AI) == 0) {
 
             if (GameManager.Instance.CurrentState == GameStates.LVL1 && LevelManager.TutorialTime) {
 
                 m_bConfirm = m_ConfirmName != "" ? Input.GetButtonDown(m_ConfirmName) : false;
             }
-            else if(GameManager.Instance.CurrentState == GameStates.LVL1 ||
-                    GameManager.Instance.CurrentState == GameStates.LVL2 ||
-                    GameManager.Instance.CurrentState == GameStates.LVL3 &&
-                    !LevelManager.TutorialTime)
+            //TODO: Check how to use bitfields effectively
+            else if((GameManager.Instance.CurrentState & m_gLevelStates) != 0
+                    && !LevelManager.TutorialTime)
             {
 
                 //It may be the case for creating a dead zone for acceleration

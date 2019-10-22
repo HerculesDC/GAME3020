@@ -56,7 +56,7 @@ public class VehicleControl : MonoBehaviour
 
     void Brake() {
         foreach (WheelCollider w in m_wAccelWheels) {
-            w.brakeTorque = m_input.Brake ? 2 * m_fAcceleration : 0.0f;
+            w.brakeTorque = m_input.Brake ? 5 * m_fAcceleration : 0.0f;
         }
     }
 }

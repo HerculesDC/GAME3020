@@ -3,40 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(VehicleControl))]
 public class AIPlay : MonoBehaviour
 {
     [SerializeField] private float m_fDetectionRange;
     [SerializeField] private GameObject[] m_gPlayer;
-    [SerializeField] private GameObject sphere; //DEBUG
+    [SerializeField] private Transform m_tTarget = null;
+                     private PlayerTargetControls m_pTargetControls = null;
+    [SerializeField] private float angle;//for reading purposes
+
+    //private GameObject m_Sphere;
+    //[SerializeField] private GameObject Sphere; //DEBUG
     [SerializeField] private Vector3[] m_vDifferences;
     [SerializeField] private float[] m_fDistances;
-
+    
     private LineRenderer m_lr = null; //DEBUG
 
     void Awake() {
         m_vDifferences = new Vector3[m_gPlayer.Length];
         m_fDistances = new float[m_gPlayer.Length];
+
+        //DEBUG: LEARN HOW TO HANDLE RAYCASTS!!!
         this.gameObject.AddComponent<LineRenderer>(); //DEBUG
         m_lr = this.gameObject.GetComponent<LineRenderer>(); //DEBUG
+        m_lr.startWidth = m_lr.endWidth = 0.1f;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //I'll assume there will ALWAYS be a first element in the m_gPlayer array:
+        m_pTargetControls = m_gPlayer[0].GetComponent<PlayerTargetControls>();
+        //if (Sphere) m_Sphere = GameObject.Instantiate<GameObject>(Sphere, this.gameObject.transform);
     }
 
     // Update is called once per frame
     void Update()
     {  
         UpdatePositions();
-        Follow(ChooseTarget());
-        
+        m_tTarget = ChooseTarget();
+        Follow();
+
         //THIS IS DEBUG CODE
-        //The detection range is returning only half a radius, for whatever reason
-        sphere.transform.localScale = Vector3.one * 2 * m_fDetectionRange;
+        /*The detection range is returning only half a radius, for whatever reason
+        if (m_Sphere) {
+            m_Sphere.transform.position = this.gameObject.transform.position;
+            m_Sphere.transform.localScale = Vector3.one * 2 * m_fDetectionRange;
+        }
+        //*/
 
         if (ChooseTarget()) {
             m_lr.enabled = true;
@@ -59,33 +73,41 @@ public class AIPlay : MonoBehaviour
     }
 
     Transform ChooseTarget() {
-
-        if (m_fDistances[0] > m_fDetectionRange && m_fDistances[1] > m_fDetectionRange) return null;
-        return m_fDistances[0] < m_fDistances[1] ? m_gPlayer[0].transform: m_gPlayer[1].transform;
+        int index = 0;
+        float temp = m_fDistances[0];
+        for (int i = 0; i < m_fDistances.Length; ++i)
+            index = m_fDistances[i] < temp ? i : index;
+        return m_fDistances[index] < m_fDetectionRange ? m_gPlayer[index].transform : null;
     }
 
-    void Follow(Transform t) {
-
+    void Follow() {
+        Accelerate();
+        Steer();
     }
 
-    public float Accelerate() {
+    public float Accelerate() { return AccelerateInternal(m_tTarget); }
+    
+    private float AccelerateInternal(Transform t){
         //for now, AI will return max accel.
-        if (ChooseTarget()) return 1.0f;
+        if (t) return 1.0f;
         return 0.0f;
     }
 
-    public float Steer() { //The current approach is too naive and requires fine-tuning
+    public float Steer() { return SteerInternal(m_tTarget); }
 
-        Transform temp = ChooseTarget();
-        if (temp) {
-            return Mathf.Sin(Mathf.Atan2(temp.position.z, temp.position.x));
+    private float SteerInternal(Transform t) {
+        
+        //The current approach is too naive and requires fine-tuning
+        if (t) {
+            //angle = Mathf.Atan2(t.position.z, t.position.x);//two calls, but it doesn't matter much now
+            return Mathf.Cos(Mathf.Atan2(t.position.z-this.gameObject.transform.position.z, t.position.x-this.gameObject.transform.position.x));
         }
         return 0.0f;
     }
 
     public bool Brake() {
 
-        if (!ChooseTarget()) return true;
+        if (!ChooseTarget() || (m_pTargetControls && m_pTargetControls.Braking)) return true;
         return false;
     }
 }

@@ -61,6 +61,7 @@
      <Compile Include="Assets\MyAssets\Scripts\Camera\ProvCamFollow.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Characters\AnalogRotation.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Characters\PlayerPositioning.cs" />
+     <Compile Include="Assets\MyAssets\Scripts\Characters\PlayerTargetControls.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Characters\VehicleControl.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Forestry\AnimTreeBehaviour.cs" />
      <Compile Include="Assets\MyAssets\Scripts\Forestry\TreeBehaviour.cs" />

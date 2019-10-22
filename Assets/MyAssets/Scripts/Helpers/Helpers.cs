@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameStates { START = 0,
-                         INTRO = 1,
-                         LVL1 = INTRO << 1,
-                         LVL2 = INTRO << 2,
-                         LVL3 = INTRO << 3,
-                         PAUSE = INTRO <<4,
-                         WIN = INTRO << 5,
-                         LOSE = INTRO << 6,
-                         STATE_COUNT = INTRO << 7 }
+[System.Flags]
+public enum GameStates : byte { START = 0,
+                                INTRO = 1,
+                                LVL1 = 1 << 1,
+                                LVL2 = 1 << 2,
+                                LVL3 = 1 << 3,
+                                PAUSE = 1 <<4,
+                                WIN = 1 << 5,
+                                LOSE = 1 << 6,
+                                STATE_COUNT = 1 << 7 }
 
 //just to be on the safe side...
-public enum Tractor { NONE = -1, AI = 0, RIGHT = 1, LEFT = 2}
+[System.Flags]
+public enum Tractor : byte { NONE = 0,
+                             AI = 1,
+                             RIGHT = 1 << 1,
+                             LEFT = 1 << 2, }
 
 public class Helpers : MonoBehaviour
 {
