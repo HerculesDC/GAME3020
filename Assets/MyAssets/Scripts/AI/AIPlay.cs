@@ -10,10 +10,8 @@ public class AIPlay : MonoBehaviour
     [SerializeField] private GameObject[] m_gPlayer;
     [SerializeField] private Transform m_tTarget = null;
                      private PlayerTargetControls m_pTargetControls = null;
-    [SerializeField] private float angle;//for reading purposes
-
-    //private GameObject m_Sphere;
-    //[SerializeField] private GameObject Sphere; //DEBUG
+    [SerializeField] private float m_fAngle; //it's easier to store a single angle and calculate upon it
+   
     [SerializeField] private Vector3[] m_vDifferences;
     [SerializeField] private float[] m_fDistances;
     
@@ -22,11 +20,6 @@ public class AIPlay : MonoBehaviour
     void Awake() {
         m_vDifferences = new Vector3[m_gPlayer.Length];
         m_fDistances = new float[m_gPlayer.Length];
-
-        //DEBUG: LEARN HOW TO HANDLE RAYCASTS!!!
-        //this.gameObject.AddComponent<LineRenderer>(); //DEBUG
-        //m_lr = this.gameObject.GetComponent<LineRenderer>(); //DEBUG
-        //m_lr.startWidth = m_lr.endWidth = 0.1f;
     }
 
     // Start is called before the first frame update
@@ -34,7 +27,6 @@ public class AIPlay : MonoBehaviour
     {
         //I'll assume there will ALWAYS be a first element in the m_gPlayer array:
         m_pTargetControls = m_gPlayer[0].GetComponent<PlayerTargetControls>();
-        //if (Sphere) m_Sphere = GameObject.Instantiate<GameObject>(Sphere, this.gameObject.transform);
     }
 
     // Update is called once per frame
@@ -44,22 +36,10 @@ public class AIPlay : MonoBehaviour
         m_tTarget = ChooseTarget();
         Follow();
 
-        //THIS IS DEBUG CODE
-        /*The detection range is returning only half a radius, for whatever reason
-        if (m_Sphere) {
-            m_Sphere.transform.position = this.gameObject.transform.position;
-            m_Sphere.transform.localScale = Vector3.one * 2 * m_fDetectionRange;
-        }
-        //*/
-        /*
-        if (ChooseTarget()) {
-            m_lr.enabled = true;
-            m_lr.SetPosition(0, this.gameObject.transform.position);
-            m_lr.SetPosition(1, ChooseTarget().position);
-        }
-        else m_lr.enabled = false;
         //*/
         if (m_tTarget) {
+            Vector3 temp = m_tTarget.position - this.gameObject.transform.position;
+            m_fAngle = Vector3.SignedAngle(this.gameObject.transform.forward, temp, Vector3.up) * Mathf.Deg2Rad;
             Debug.DrawRay(this.gameObject.transform.position, m_tTarget.position - this.gameObject.transform.position, Color.red);
             Debug.DrawLine(this.gameObject.transform.position, (this.gameObject.transform.forward * 10) + this.gameObject.transform.position, Color.green);
         }
@@ -94,7 +74,7 @@ public class AIPlay : MonoBehaviour
 
         //for now, AI will return max accel.
         if (m_tTarget)
-            return Mathf.Sin(Mathf.Atan2(m_tTarget.position.z - this.gameObject.transform.position.z, m_tTarget.position.x - this.gameObject.transform.position.x));
+            return Mathf.Cos(m_fAngle);
         return 0.0f;
     }
 
@@ -102,7 +82,7 @@ public class AIPlay : MonoBehaviour
         
         //The current approach is too naive and requires fine-tuning
         if (m_tTarget) {
-            return Mathf.Cos(Mathf.Atan2(m_tTarget.position.z-this.gameObject.transform.position.z, m_tTarget.position.x-this.gameObject.transform.position.x));
+            return Mathf.Sin(m_fAngle);
         }
         return 0.0f;
     }
