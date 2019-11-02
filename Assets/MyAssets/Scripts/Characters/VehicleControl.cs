@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(Rigidbody))]
 public class VehicleControl : MonoBehaviour
 {

@@ -17,9 +17,8 @@ public class InputManager : MonoBehaviour
     public float Turn { get { return m_fTurn; } }
 
     /* IMPORTANT!
-     * Unity maps joystick buttons as an "array", whereas 
-     * Windows maps joystick buttons starting at 
-     * 1 for the "southern" button of the right hand
+     * Unity maps 0-indexed joystick buttons, whereas 
+     * Windows maps joystick buttons starting at 1
      */
     [SerializeField] private string m_BrakeName;
     [SerializeField] private bool m_bBrake; //VISUALIZATION: REMOVE SERIALIZATION LATER

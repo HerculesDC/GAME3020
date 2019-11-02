@@ -52,7 +52,7 @@ public class PlayerPositioning : MonoBehaviour
         if (m_gLeft && m_gRight) {
 
             SetPosition();
-            SetFacing();
+            //SetFacing();
             UpdateDistances();
         }
 
@@ -76,7 +76,7 @@ public class PlayerPositioning : MonoBehaviour
     void SetFacing() {
 
         this.gameObject.transform.rotation = Quaternion.Slerp(m_gLeft.transform.rotation, m_gRight.transform.rotation, 0.5f);
-        m_vFacing = this.gameObject.transform.position + this.gameObject.transform.forward;
+        m_vFacing = /*this.gameObject.transform.position + */this.gameObject.transform.forward;
     }
 
     public float TractorDistance() {

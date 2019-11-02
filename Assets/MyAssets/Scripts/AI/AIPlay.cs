@@ -4,13 +4,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(VehicleControl))]
-public class AIPlay : MonoBehaviour
+public class AIPlay : MonoBehaviour, InputHandler
 {
     [SerializeField] private float m_fDetectionRange;
     [SerializeField] private GameObject[] m_gPlayer;
     [SerializeField] private Transform m_tTarget = null;
                      private PlayerTargetControls m_pTargetControls = null;
     [SerializeField] private float m_fAngle; //it's easier to store a single angle and calculate upon it
+                     public float Angle { get { return m_fAngle; } }
    
     [SerializeField] private Vector3[] m_vDifferences;
     [SerializeField] private float[] m_fDistances;

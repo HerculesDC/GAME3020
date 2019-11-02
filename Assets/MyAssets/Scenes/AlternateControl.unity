@@ -401,6 +401,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tractor: 4
   m_fVelocity: 10
+  m_tTarget: {fileID: 321337291}
+  m_fMaxDistance: 10
+  m_fFactor: 3.5
 --- !u!114 &82271779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +551,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d965e10013ff69e40b6362d60e5d0b7f, type: 3}
+--- !u!4 &321337291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1084846049590974893, guid: d965e10013ff69e40b6362d60e5d0b7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 321337290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &878368307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -555,6 +564,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4763168303995267740, guid: c69db04a99b813c42af6fff776193652,
+        type: 3}
+      propertyPath: m_Name
+      value: PoliceVehicle1
+      objectReference: {fileID: 0}
     - target: {fileID: 1134818689482793778, guid: c69db04a99b813c42af6fff776193652,
         type: 3}
       propertyPath: m_gPlayer.Array.data[0]
@@ -565,11 +579,6 @@ PrefabInstance:
       propertyPath: m_gPlayer.Array.data[1]
       value: 
       objectReference: {fileID: 1559095912}
-    - target: {fileID: 4763168303995267740, guid: c69db04a99b813c42af6fff776193652,
-        type: 3}
-      propertyPath: m_Name
-      value: PoliceVehicle1
-      objectReference: {fileID: 0}
     - target: {fileID: 4763168303995267741, guid: c69db04a99b813c42af6fff776193652,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -649,6 +658,7 @@ MonoBehaviour:
   m_gPlayer:
   - {fileID: 82271773}
   m_tTarget: {fileID: 0}
+  m_fAngle: 0
   m_vDifferences: []
   m_fDistances: []
 --- !u!1001 &1029565186
@@ -908,6 +918,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae253be9ae3127a4d8a5a210c9a9a02f, type: 3}
+--- !u!4 &1179289553 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3617576929582002502, guid: ae253be9ae3127a4d8a5a210c9a9a02f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1179289552}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1559095912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3617576929582002503, guid: ae253be9ae3127a4d8a5a210c9a9a02f,
@@ -930,6 +946,7 @@ MonoBehaviour:
   m_gPlayer:
   - {fileID: 1991023564}
   m_tTarget: {fileID: 0}
+  m_fAngle: 0
   m_vDifferences: []
   m_fDistances: []
 --- !u!1 &1960506123
@@ -1132,6 +1149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tractor: 2
   m_fVelocity: 10
+  m_tTarget: {fileID: 1179289553}
+  m_fMaxDistance: 5
+  m_fFactor: 3.5
 --- !u!114 &1991023570
 MonoBehaviour:
   m_ObjectHideFlags: 0
